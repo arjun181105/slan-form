@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SLAN Finance — Speak to a broker in 30 seconds</title>
+  <meta name="description" content="Streamlined Loan Application Network. Get matched with a Melbourne broker and receive a callback in under a minute." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #0a1f3d;
+      --navy-deep: #061429;
+      --cream: #f5f0e8;
+      --bone: #faf6ef;
+      --gold: #b8965a;
+      --gold-bright: #d4af6f;
+      --line: rgba(10, 31, 61, 0.12);
+      --muted: #4a5a73;
+      --error: #b3261e;
+      --success: #14532d;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bone);
+      color: var(--navy);
+      line-height: 1.5;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Top trust bar */
+    .topbar {
+      background: var(--navy-deep);
+      color: var(--cream);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      text-align: center;
+      font-weight: 500;
+    }
+    .topbar a { color: var(--gold-bright); text-decoration: none; }
+
+    /* Header */
+    header {
+      background: var(--navy);
+      color: var(--cream);
+      padding: 20px 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .header-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .brand-mark {
+      font-family: 'Fraunces', serif;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .brand-mark span { color: var(--gold-bright); }
+    .brand-sub {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.6);
+      font-weight: 500;
+    }
+    .header-cta {
+      font-size: 13px;
+      color: rgba(245, 240, 232, 0.7);
+      letter-spacing: 0.04em;
+    }
+    .header-cta a {
+      color: var(--cream);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 2px;
+      margin-left: 6px;
+    }
+
+    /* Hero + form layout */
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 60px 32px 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    @media (max-width: 880px) {
+      .container { grid-template-columns: 1fr; padding: 40px 24px; gap: 40px; }
+    }
+
+    /* Left column */
+    .pitch {
+      padding-top: 12px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--gold);
+    }
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(38px, 4.5vw, 56px);
+      line-height: 1.02;
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      margin-bottom: 24px;
+    }
+    h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold);
+    }
+    .lede {
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--muted);
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+
+    .proof {
+      border-top: 1px solid var(--line);
+      padding-top: 28px;
+      margin-top: 8px;
+    }
+    .proof-label {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+      font-weight: 500;
+    }
+    .lenders {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      font-family: 'Fraunces', serif;
+      font-size: 15px;
+      color: var(--navy);
+      font-weight: 500;
+    }
+    .lenders span { opacity: 0.7; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+    .stat-num {
+      font-family: 'Fraunces', serif;
+      font-size: 32px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--gold); }
+    .stat-label {
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* Right column — form card */
+    .form-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 40px 36px;
+      box-shadow: 0 20px 50px -25px rgba(10, 31, 61, 0.25);
+      position: relative;
+    }
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gold);
+    }
+    .form-title {
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 6px;
+    }
+    .form-sub {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    .field { margin-bottom: 18px; }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 480px) { .field-row { grid-template-columns: 1fr; } }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    label .req { color: var(--gold); margin-left: 2px; }
+
+    input, select {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--navy);
+      background: #fff;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    input::placeholder { color: #9aa5b5; }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(10, 31, 61, 0.08);
+    }
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%230a1f3d' stroke-width='1.5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 16px;
+      background: var(--navy);
+      color: var(--cream);
+      border: none;
+      border-radius: 3px;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: inherit;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s, transform 0.1s;
+      position: relative;
+    }
+    button[type="submit"]:hover:not(:disabled) { background: var(--navy-deep); }
+    button[type="submit"]:active:not(:disabled) { transform: translateY(1px); }
+    button[type="submit"]:disabled { opacity: 0.7; cursor: not-allowed; }
+    button .arrow { display: inline-block; margin-left: 8px; transition: transform 0.2s; }
+    button:hover .arrow { transform: translateX(3px); }
+
+    .legal {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: 18px;
+      text-align: center;
+    }
+    .legal a { color: var(--navy); text-decoration: underline; }
+
+    .alert {
+      padding: 14px 16px;
+      border-radius: 3px;
+      margin-top: 18px;
+      font-size: 14px;
+      display: none;
+      line-height: 1.4;
+    }
+    .alert.success {
+      background: #f0fdf4;
+      color: var(--success);
+      border-left: 3px solid var(--success);
+    }
+    .alert.error {
+      background: #fef2f2;
+      color: var(--error);
+      border-left: 3px solid var(--error);
+    }
+    .alert.show { display: block; }
+
+    /* Footer */
+    footer {
+      max-width: 1180px;
+      margin: 40px auto 0;
+      padding: 32px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    footer a { color: var(--navy); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Tiny decorative serif quote */
+    .quote {
+      margin-top: 40px;
+      padding: 24px 0 0;
+      border-top: 1px solid var(--line);
+      font-family: 'Fraunces', serif;
+      font-size: 17px;
+      line-height: 1.5;
+      font-style: italic;
+      color: var(--navy);
+      max-width: 480px;
+    }
+    .quote-attr {
+      font-style: normal;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    Melbourne · Sydney · Perth — Call us <a href="tel:1300181828">1300 181 828</a>
+  </div>
+
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark">SLAN<span>.</span></div>
+        <div class="brand-sub">Streamlined Loan Application Network</div>
+      </div>
+      <div class="header-cta">Already a client?<a href="tel:1300181828">Speak to your broker</a></div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <section class="pitch">
+      <div class="eyebrow">Speak to a broker in 30 seconds</div>
+      <h1>Your loan, <em>simplified.</em> Matched to the right broker, fast.</h1>
+      <p class="lede">
+        Tell us a little about what you're after. One of our brokers will call you within the minute to walk you through your options — no obligation, no pressure.
+      </p>
+
+      <div class="proof">
+        <div class="proof-label">Compare 50+ lenders, including</div>
+        <div class="lenders">
+          <span>CBA</span>
+          <span>NAB</span>
+          <span>ANZ</span>
+          <span>Macquarie</span>
+          <span>St.George</span>
+          <span>AMP</span>
+          <span>ING</span>
+          <span>Bankwest</span>
+          <span>Suncorp</span>
+          <span>UBank</span>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div>
+          <div class="stat-num">50<span>+</span></div>
+          <div class="stat-label">Lenders on panel</div>
+        </div>
+        <div>
+          <div class="stat-num">&lt;1<span>min</span></div>
+          <div class="stat-label">Average callback</div>
+        </div>
+        <div>
+          <div class="stat-num">$0</div>
+          <div class="stat-label">Broker fee to you</div>
+        </div>
+      </div>
+
+      <div class="quote">
+        "We work for you, not the banks. That's why every client gets paired with the broker whose expertise actually fits their situation."
+        <div class="quote-attr">— The SLAN approach</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="form-card">
+        <div class="form-title">Request a callback</div>
+        <div class="form-sub">A broker will be in touch within 60 seconds.</div>
+
+        <form id="leadForm" novalidate>
+
+          <div class="field">
+            <label for="name">Full name<span class="req">*</span></label>
+            <input type="text" id="name" name="name" autocomplete="name" required />
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="phone">Mobile<span class="req">*</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="0412 345 678" autocomplete="tel" required />
+            </div>
+            <div class="field">
+              <label for="email">Email<span class="req">*</span></label>
+              <input type="email" id="email" name="email" autocomplete="email" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="loan_purpose">What can we help with?<span class="req">*</span></label>
+            <select id="loan_purpose" name="loan_purpose" required>
+              <option value="" disabled selected>Select an option</option>
+              <option value="first_home">Buying my first home</option>
+              <option value="next_home">Buying my next home</option>
+              <option value="refinance">Refinancing an existing loan</option>
+              <option value="investment">Investment property</option>
+              <option value="business">Business / commercial finance</option>
+              <option value="other">Something else</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="timeline">How soon do you need this sorted?<span class="req">*</span></label>
+            <select id="timeline" name="timeline" required>
+              <option value="" disabled selected>Select an option</option>
+              <option value="now">As soon as possible</option>
+              <option value="1-3mo">Within 1–3 months</option>
+              <option value="3-6mo">3–6 months away</option>
+              <option value="just_looking">Just exploring options</option>
+            </select>
+          </div>
+
+          <button type="submit" id="submitBtn">
+            Request my callback <span class="arrow">→</span>
+          </button>
+
+          <div class="alert success" id="successMsg">
+            <strong>Thanks.</strong> Your broker is calling now — please answer when your phone rings from a Melbourne number.
+          </div>
+          <div class="alert error" id="errorMsg">
+            Something went wrong on our end. Please try again, or call us directly on <a href="tel:1300181828">1300 181 828</a>.
+          </div>
+
+          <div class="legal">
+            By submitting this form you consent to be contacted by SLAN Finance regarding your enquiry. We never share your details.
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div>© SLAN Finance Pty Ltd · Australian Credit Licence 384704 · CRN 510099</div>
+    <div>Melbourne · Sydney · Perth</div>
+  </footer>
+
+  <script>
+    const WEBHOOK_URL = "https://slan-crm.vercel.app/api/leads";
+
+    function normalizePhone(raw) {
+      let p = (raw || "").replace(/\s|-|\(|\)|\./g, "");
+      if (p.startsWith("+61")) return p;
+      if (p.startsWith("61") && p.length >= 11) return "+" + p;
+      if (p.startsWith("0")) return "+61" + p.substring(1);
+      if (/^4\d{8}$/.test(p)) return "+61" + p;
+      return p;
+    }
+
+    const form = document.getElementById("leadForm");
+    const btn = document.getElementById("submitBtn");
+    const successMsg = document.getElementById("successMsg");
+    const errorMsg = document.getElementById("errorMsg");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      successMsg.classList.remove("show");
+      errorMsg.classList.remove("show");
+
+      // Basic validation
+      const name = document.getElementById("name").value.trim();
+      const phoneRaw = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const purpose = document.getElementById("loan_purpose").value;
+      const timeline = document.getElementById("timeline").value;
+
+      if (!name || !phoneRaw || !email || !purpose || !timeline) {
+        errorMsg.textContent = "Please fill in all fields before submitting.";
+        errorMsg.classList.add("show");
+        return;
+      }
+
+      const phone = normalizePhone(phoneRaw);
+      if (!/^\+61\d{9}$/.test(phone)) {
+        errorMsg.textContent = "That doesn't look like a valid Australian mobile. Please double-check.";
+        errorMsg.classList.add("show");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = 'Sending… <span class="arrow">→</span>';
+
+      const payload = {
+        name,
+        phone,
+        email,
+        loan_purpose: purpose,
+        timeline,
+        submitted_at: new Date().toISOString(),
+        source: "slan_demo_form",
+        user_agent: navigator.userAgent
+      };
+
+      try {
+        const res = await fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error("Webhook returned " + res.status);
+        successMsg.classList.add("show");
+        form.reset();
+        btn.innerHTML = 'Submitted ✓ <span class="arrow">→</span>';
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.innerHTML = 'Request my callback <span class="arrow">→</span>';
+        }, 6000);
+      } catch (err) {
+        console.error("Submit error:", err);
+        errorMsg.innerHTML = 'Something went wrong on our end. Please try again, or call us directly on <a href="tel:1300181828">1300 181 828</a>.';
+        errorMsg.classList.add("show");
+        btn.disabled = false;
+        btn.innerHTML = 'Request my callback <span class="arrow">→</span>';
+      }
+    });
+  </script>
+</body>
+</html>
